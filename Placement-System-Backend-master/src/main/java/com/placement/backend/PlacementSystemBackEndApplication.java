@@ -9,6 +9,7 @@ public class PlacementSystemBackEndApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PlacementSystemBackEndApplication.class, args);
 		//Pull the code
+		System.out.println("Final Push");
 	}
 
 }
