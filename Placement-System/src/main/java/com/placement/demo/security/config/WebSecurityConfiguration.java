@@ -1,6 +1,7 @@
 package com.placement.demo.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -30,7 +31,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService jwtservice;
-
+	
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManager() throws Exception {
