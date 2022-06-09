@@ -7,9 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PlacementSystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PlacementSystemApplication.class, args);
-	
-	System.out.println("hello Ghanshyam");
-	}
 
+		SpringApplication.run(PlacementSystemApplication.class, args);
+
+	}
 }
