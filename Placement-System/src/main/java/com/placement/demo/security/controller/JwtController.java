@@ -12,7 +12,6 @@ import com.placement.demo.security.services.JwtService;
 
 
 @RestController
-@CrossOrigin
 public class JwtController {
 	
 	@Autowired
