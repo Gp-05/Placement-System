@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.placement.demo.admin.entity.Role;
 import com.placement.demo.admin.services.RoleServices;
-import com.placement.demo.security.entity.Role;
 
 @RestController
 @RequestMapping("/admin")
