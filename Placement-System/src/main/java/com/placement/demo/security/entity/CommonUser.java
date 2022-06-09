@@ -1,5 +1,7 @@
 package com.placement.demo.security.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,11 +22,11 @@ import lombok.NoArgsConstructor;
 public class CommonUser {
 
 	@Id
+	private String UserName;
+
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int user_id;
 
-	@Id
-	private String UserName;
 	private String emailId;
 	private String password;
 
