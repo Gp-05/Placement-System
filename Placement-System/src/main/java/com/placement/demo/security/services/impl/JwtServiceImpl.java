@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.placement.demo.security.entity.CommonUser;
+import com.placement.demo.security.entity.User;
 import com.placement.demo.security.entity.JwtReponse;
 import com.placement.demo.security.entity.JwtRequest;
 import com.placement.demo.security.repository.CommonUserRepository;
@@ -36,7 +36,7 @@ public class JwtServiceImpl implements JwtService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		CommonUser user = commonUserRepository.findById(username).get();
+		User user = commonUserRepository.findById(username).get();
 
 		if (user != null) {
 			return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
@@ -58,13 +58,13 @@ public class JwtServiceImpl implements JwtService {
 
 		String newgeneratedToken = jwtUtil.generateToken(userDetails);
 
-		CommonUser user = commonUserRepository.findById(username).get();
+		User user = commonUserRepository.findById(username).get();
 
 		return new JwtReponse(user, newgeneratedToken);
 	}
 
 	@Override
-	public Set getAuthroities(CommonUser commonUser) {
+	public Set getAuthroities(User commonUser) {
 
 		Set authorities = new HashSet<>();
 

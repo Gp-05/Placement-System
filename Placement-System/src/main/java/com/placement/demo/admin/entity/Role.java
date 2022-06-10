@@ -8,7 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.placement.demo.security.entity.CommonUser;
+import com.placement.demo.security.entity.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +27,7 @@ public class Role {
 	
 	@OneToMany(mappedBy="role")
 	@JsonIgnore
-    private Set<CommonUser> users;
+    private Set<User> users;
 	
 		
 	

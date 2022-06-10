@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "common_user")
-public class CommonUser {
+@Table(name = "user")
+public class User {
 
 	@Id
 	private String UserName;
