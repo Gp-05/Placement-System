@@ -35,7 +35,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManager() throws Exception {
-		return super.authenticationManager();
+		return super.authenticationManager();              
 	}
 
 	@Override
@@ -45,7 +45,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpHeaders.ALLOW).permitAll().anyRequest().authenticated().and().exceptionHandling()
 				.authenticationEntryPoint(authenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
 		http.addFilterBefore(jwtrequestfilter, UsernamePasswordAuthenticationFilter.class);
 	}
 
