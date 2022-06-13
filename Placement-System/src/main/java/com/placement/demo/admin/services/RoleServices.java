@@ -8,6 +8,4 @@ public interface RoleServices {
 
 	Role findByRoleName(String rollname);
 	
-	Role findByRoleId(int id);
-
 }

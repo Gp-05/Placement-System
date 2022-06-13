@@ -22,12 +22,10 @@ import com.placement.demo.admin.entity.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "user")
 public class User {
 
@@ -41,8 +39,8 @@ public class User {
 	private String emailId;
 	private String password;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "role_id", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "role_name", nullable = false)
 	private Role role;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")

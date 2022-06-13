@@ -25,16 +25,13 @@ import lombok.NoArgsConstructor;
 @Table
 public class Role {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int roleId;
 
-	@Column(unique = true)
+	@Id
 	private String roleName;
 
 	private String roleDescription;
 
-	@OneToMany(mappedBy = "role",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "role")
 	@JsonIgnore
 	private Set<User> users;
 
