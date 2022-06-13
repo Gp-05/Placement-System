@@ -1,8 +1,8 @@
 package com.placement.demo.admin.entity;
 
-import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,25 +23,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class Role implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+public class Role {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name ="role_id")
-	private int id;
-	
-	
-	private String roleName;	
-	private String roleDescription ;
-	
-	@OneToMany(mappedBy="role")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private int roleId;
+
+	@Column(unique = true)
+	private String roleName;
+
+	private String roleDescription;
+
+	@OneToMany(mappedBy = "role",cascade = CascadeType.ALL)
 	@JsonIgnore
-    private Set<User> users;
-	
-		
-	
-	
+	private Set<User> users;
 
 }

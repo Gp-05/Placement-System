@@ -7,5 +7,7 @@ import com.placement.demo.admin.entity.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
+	
+	Role findByroleName(String roleName);
 
 }

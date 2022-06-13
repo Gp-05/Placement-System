@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.placement.demo.admin.entity.Admin;
+import com.placement.demo.admin.entity.Role;
 import com.placement.demo.admin.services.Adminservices;
 import com.placement.demo.admin.services.RoleServices;
 import com.placement.demo.security.entity.User;
@@ -29,15 +30,10 @@ public class AdminController {
 	@PostMapping("/createAdmin")
 	public ResponseEntity<?> saveAdmin(@RequestBody Admin admin) {
 		
-		System.out.println(admin.getUser());
-		
-		userServices.saveUser(admin.getUser());
-		
-		
-		
-		//Admin admin2=adminservices.createAdmin(admin);
-		
-		return ResponseEntity.ok("Done");
+		Role role=roleServices.findByRoleId(admin.getUser().getRole().getRoleId());
+		admin.getUser().setRole(role);
+		System.out.println(admin);
+		return ResponseEntity.ok(adminservices.createAdmin(admin));
 	}
 
 }
