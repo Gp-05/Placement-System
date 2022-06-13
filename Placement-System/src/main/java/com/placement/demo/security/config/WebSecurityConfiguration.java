@@ -1,7 +1,6 @@
 package com.placement.demo.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -41,7 +40,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
-		http.csrf().disable().authorizeRequests().antMatchers("/authenticate","/admin/createNewRole").permitAll()
+		http.csrf().disable().authorizeRequests()
+		        .antMatchers("/authenticate","/admin/createNewRole",
+		        "/admin/createAdmin")
+		        .permitAll()
 				.antMatchers(HttpHeaders.ALLOW).permitAll().anyRequest().authenticated().and().exceptionHandling()
 				.authenticationEntryPoint(authenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

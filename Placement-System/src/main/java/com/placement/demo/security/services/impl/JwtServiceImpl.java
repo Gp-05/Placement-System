@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import com.placement.demo.security.entity.User;
 import com.placement.demo.security.entity.JwtReponse;
 import com.placement.demo.security.entity.JwtRequest;
-import com.placement.demo.security.repository.CommonUserRepository;
+import com.placement.demo.security.repository.UserRepository;
 import com.placement.demo.security.services.JwtService;
 import com.placement.demo.security.util.JwtUtil;
 
@@ -25,7 +25,7 @@ import com.placement.demo.security.util.JwtUtil;
 public class JwtServiceImpl implements JwtService {
 
 	@Autowired
-	private CommonUserRepository commonUserRepository;
+	private UserRepository commonUserRepository;
 
 	@Autowired
 	private JwtUtil jwtUtil;
@@ -64,11 +64,11 @@ public class JwtServiceImpl implements JwtService {
 	}
 
 	@Override
-	public Set getAuthroities(User commonUser) {
+	public Set getAuthroities(User user) {
 
 		Set authorities = new HashSet<>();
 
-		authorities.add(new SimpleGrantedAuthority("ROLE_" + commonUser.getRole().getRoleName()));
+		authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().getRoleName()));
 
 		return authorities;
 	}

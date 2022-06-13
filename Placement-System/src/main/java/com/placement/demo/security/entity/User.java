@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,19 +29,19 @@ import lombok.NoArgsConstructor;
 public class User {
 
 	@Id
-	private String UserName;
-
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int user_id;
+
+	private String UserName;
 
 	private String emailId;
 	private String password;
 
-	@ManyToOne
-	@JoinColumn(name = "role_name", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name = "role_id", nullable=false)
 	private Role role;
-	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
-	private List<Admin> admins=new ArrayList<Admin>();
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private List<Admin> admins = new ArrayList<Admin>();
 
 }
