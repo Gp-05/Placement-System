@@ -65,7 +65,9 @@ public class JwtServiceImpl implements JwtService {
 	public Set getAuthroities(User user) {
 		Set authorities = new HashSet();
 
-		authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().getRoleName()));
+		user.getRole().forEach(role -> {
+			authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
+		});
 
 		return authorities;
 	}

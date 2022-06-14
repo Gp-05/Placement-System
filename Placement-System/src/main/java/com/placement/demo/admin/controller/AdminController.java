@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.placement.demo.admin.entity.Admin;
 import com.placement.demo.admin.entity.Role;
 import com.placement.demo.admin.services.Adminservices;
-import com.placement.demo.admin.services.RoleServices;
 import com.placement.demo.security.entity.User;
 import com.placement.demo.security.services.UserServices;
 
@@ -21,16 +20,8 @@ public class AdminController {
 	@Autowired
 	private Adminservices adminservices;
 
-	@Autowired
-	private UserServices userServices;
-
-	@Autowired
-	private RoleServices roleServices;
-
 	@PostMapping("/createAdmin")
 	public ResponseEntity<?> saveAdmin(@RequestBody Admin admin) {
-
-		System.out.println(admin);
 
 		return ResponseEntity.ok(adminservices.createAdmin(admin));
 	}

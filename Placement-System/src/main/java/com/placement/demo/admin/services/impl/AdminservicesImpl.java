@@ -1,6 +1,7 @@
 package com.placement.demo.admin.services.impl;
 
-import java.util.stream.Collectors;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,7 +11,6 @@ import com.placement.demo.admin.entity.Admin;
 import com.placement.demo.admin.entity.Role;
 import com.placement.demo.admin.repository.AdminRepository;
 import com.placement.demo.admin.services.Adminservices;
-import com.placement.demo.security.entity.User;
 
 @Service
 public class AdminservicesImpl implements Adminservices {
@@ -21,21 +21,12 @@ public class AdminservicesImpl implements Adminservices {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+
 	@Override
 	public Admin createAdmin(Admin admin) {
-		
-		admin.getUser().setPassword(getEncodedpassword(admin.getUser().getPassword()));
-		
-//		int cnt = 1;
-//		admin.getUser().setRoles(admin.getUser().getRoles().stream().map(r -> {
-//			role.setRoleName(r.getRoleName());
-//			role.setRoleDescription(r.getRoleDescription());
-//			return role;
-//		}).collect(Collectors.toSet()));
 
-		System.out.println(admin.getUser().getRole());
-		
-		
+		admin.getUser().setPassword(getEncodedpassword(admin.getUser().getPassword()));
+
 		return adminRepository.save(admin);
 	}
 
