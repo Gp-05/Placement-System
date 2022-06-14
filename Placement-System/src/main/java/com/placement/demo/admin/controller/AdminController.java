@@ -17,6 +17,8 @@ import com.placement.demo.security.services.UserServices;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
+
+	@Autowired
 	private Adminservices adminservices;
 
 	@Autowired
@@ -24,15 +26,13 @@ public class AdminController {
 
 	@Autowired
 	private RoleServices roleServices;
-	
+
 	@PostMapping("/createAdmin")
 	public ResponseEntity<?> saveAdmin(@RequestBody Admin admin) {
-		
-		Role role=roleServices.findByRoleName(admin.getUser().getRole().getRoleName());
-		admin.getUser().setRole(role);
+
 		System.out.println(admin);
+
 		return ResponseEntity.ok(adminservices.createAdmin(admin));
 	}
-	
 
 }

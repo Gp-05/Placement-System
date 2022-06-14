@@ -10,13 +10,12 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.placement.demo.security.entity.User;
 import com.placement.demo.security.entity.JwtReponse;
 import com.placement.demo.security.entity.JwtRequest;
+import com.placement.demo.security.entity.User;
 import com.placement.demo.security.repository.UserRepository;
 import com.placement.demo.security.services.JwtService;
 import com.placement.demo.security.util.JwtUtil;
@@ -63,10 +62,8 @@ public class JwtServiceImpl implements JwtService {
 		return new JwtReponse(user, newgeneratedToken);
 	}
 
-	@Override
 	public Set getAuthroities(User user) {
-
-		Set authorities = new HashSet<>();
+		Set authorities = new HashSet();
 
 		authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().getRoleName()));
 
