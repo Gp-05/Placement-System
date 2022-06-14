@@ -24,7 +24,7 @@ import com.placement.demo.security.util.JwtUtil;
 public class JwtServiceImpl implements JwtService {
 
 	@Autowired
-	private UserRepository commonUserRepository;
+	private UserRepository userRepository;
 
 	@Autowired
 	private JwtUtil jwtUtil;
@@ -35,7 +35,7 @@ public class JwtServiceImpl implements JwtService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		User user = commonUserRepository.findById(username).get();
+		User user = userRepository.findByuserName(username);
 
 		if (user != null) {
 			return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
@@ -48,8 +48,10 @@ public class JwtServiceImpl implements JwtService {
 
 	@Override
 	public JwtReponse createjwttoken(JwtRequest jwtRequest) throws Exception {
+		
 		String username = jwtRequest.getUsername();
 		String password = jwtRequest.getPassword();
+		
 
 		authenticate(username, password);
 
@@ -57,7 +59,7 @@ public class JwtServiceImpl implements JwtService {
 
 		String newgeneratedToken = jwtUtil.generateToken(userDetails);
 
-		User user = commonUserRepository.findById(username).get();
+		User user = userRepository.findByuserName(username);
 
 		return new JwtReponse(user, newgeneratedToken);
 	}
@@ -80,6 +82,8 @@ public class JwtServiceImpl implements JwtService {
 			throw new Exception("User is disabled");
 		} catch (BadCredentialsException e) {
 			throw new Exception("Bad credentials from user");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

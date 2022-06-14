@@ -34,4 +34,9 @@ public class AdminservicesImpl implements Adminservices {
 		return passwordEncoder.encode(password);
 	}
 
+	@Override
+	public Admin findByID(int id) {
+		return adminRepository.findById(id).get();
+	}
+
 }

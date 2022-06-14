@@ -5,5 +5,7 @@ import com.placement.demo.admin.entity.Admin;
 public interface Adminservices {
 	
 	Admin createAdmin(Admin admin);
+	
+	Admin findByID(int id);
 
 }

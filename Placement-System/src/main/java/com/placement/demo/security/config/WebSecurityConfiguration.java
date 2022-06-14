@@ -16,7 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -30,20 +29,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService jwtservice;
-	
+
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManager() throws Exception {
-		return super.authenticationManager();              
+		return super.authenticationManager();
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
 		http.csrf().disable().authorizeRequests()
-		        .antMatchers("/authenticate","/admin/createNewRole",
-		        "/admin/createAdmin")
-		        .permitAll()
+				.antMatchers("/authenticate", "/admin/createNewRole", "/admin/createAdmin").permitAll()
 				.antMatchers(HttpHeaders.ALLOW).permitAll().anyRequest().authenticated().and().exceptionHandling()
 				.authenticationEntryPoint(authenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

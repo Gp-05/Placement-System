@@ -7,5 +7,7 @@ import com.placement.demo.security.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,String> {
+	
+	User findByuserName(String username);
 
 }

@@ -14,5 +14,10 @@ public class UserServicesImpl implements UserServices {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Override
+	public User findByuserName(String username) {
+		return userRepository.findByuserName(username);
+	}
+
 
 }

@@ -44,11 +44,10 @@ public class User {
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_ROLE", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "ROLE_NAME") })
+			@JoinColumn(name = "ROLE_ID") })
 	private Set<Role> role;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	@JsonIgnore
 	private List<Admin> admins = new ArrayList<Admin>();
 	
 	
