@@ -11,6 +11,7 @@ import com.placement.demo.admin.entity.Admin;
 import com.placement.demo.admin.entity.Role;
 import com.placement.demo.admin.repository.AdminRepository;
 import com.placement.demo.admin.services.Adminservices;
+import com.placement.demo.admin.services.RoleServices;
 
 @Service
 public class AdminservicesImpl implements Adminservices {
@@ -21,12 +22,14 @@ public class AdminservicesImpl implements Adminservices {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private RoleServices roleServices;
 
 	@Override
 	public Admin createAdmin(Admin admin) {
-
+		admin.getUser().setRole(roleServices.getRoleById(admin.getUser().getRole().getRoleId()));
 		admin.getUser().setPassword(getEncodedpassword(admin.getUser().getPassword()));
-
+		System.out.println(admin);
 		return adminRepository.save(admin);
 	}
 

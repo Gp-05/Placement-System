@@ -2,22 +2,18 @@ package com.placement.demo.security.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.placement.demo.admin.entity.Admin;
 import com.placement.demo.admin.entity.Role;
 
@@ -40,12 +36,12 @@ public class User {
 	private String userName;
 
 	private String emailId;
+	
 	private String password;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "USER_ROLE", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "ROLE_ID") })
-	private Set<Role> role;
+	@ManyToOne
+	@JoinColumn(name = "role_id", nullable = false)
+	private Role role;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<Admin> admins = new ArrayList<Admin>();

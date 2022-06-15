@@ -48,10 +48,9 @@ public class JwtServiceImpl implements JwtService {
 
 	@Override
 	public JwtReponse createjwttoken(JwtRequest jwtRequest) throws Exception {
-		
+
 		String username = jwtRequest.getUsername();
 		String password = jwtRequest.getPassword();
-		
 
 		authenticate(username, password);
 
@@ -67,9 +66,7 @@ public class JwtServiceImpl implements JwtService {
 	public Set getAuthroities(User user) {
 		Set authorities = new HashSet();
 
-		user.getRole().forEach(role -> {
-			authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
-		});
+		authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().getRoleName()));
 
 		return authorities;
 	}

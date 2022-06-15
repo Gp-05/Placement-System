@@ -1,5 +1,6 @@
-package com.placement.demo.admin.entity;
+	package com.placement.demo.admin.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,9 +21,9 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int roleId;
-
+	
+	@Column(unique = true)
 	private String roleName;
 
-	private String roleDescription;
 
 }

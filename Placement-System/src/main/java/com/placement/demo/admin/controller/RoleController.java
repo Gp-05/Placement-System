@@ -2,27 +2,24 @@ package com.placement.demo.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.placement.demo.admin.entity.Admin;
 import com.placement.demo.admin.entity.Role;
-import com.placement.demo.admin.services.Adminservices;
-import com.placement.demo.security.entity.User;
-import com.placement.demo.security.services.UserServices;
+import com.placement.demo.admin.services.RoleServices;
 
 @RestController
 @RequestMapping("/admin")
-public class AdminController {
-
+public class RoleController {
+	
 	@Autowired
-	private Adminservices adminservices;
-
-	@PostMapping("/createAdmin")
-	public ResponseEntity<?> saveAdmin(@RequestBody Admin admin) {
-		return ResponseEntity.ok(adminservices.createAdmin(admin));
+	private RoleServices roleServices;
+	
+	@PostMapping("/createNewRole")
+	public ResponseEntity<?> saveRole(@RequestBody Role role){
+		return ResponseEntity.ok(roleServices.saveRole(role));
 	}
+
 }
