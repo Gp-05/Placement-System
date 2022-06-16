@@ -1,14 +1,10 @@
 package com.placement.demo.admin.services.impl;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.placement.demo.admin.entity.Admin;
-import com.placement.demo.admin.entity.Role;
 import com.placement.demo.admin.repository.AdminRepository;
 import com.placement.demo.admin.services.Adminservices;
 import com.placement.demo.admin.services.RoleServices;
@@ -38,8 +34,8 @@ public class AdminservicesImpl implements Adminservices {
 	}
 
 	@Override
-	public Admin findByID(int id) {
-		return adminRepository.findById(id).get();
+	public Admin getAdminByUserId(int userId) {
+		return adminRepository.findByUserId(userId);
 	}
 
 }

@@ -15,9 +15,12 @@ public class UserServicesImpl implements UserServices {
 	private UserRepository userRepository;
 
 	@Override
-	public User findByuserName(String username) {
+	public User findByUsername(String username) {
 		return userRepository.findByuserName(username);
 	}
 
-
+	@Override
+	public User getUserbyUserId(int user_id) {
+		return userRepository.findById(user_id).get();
+	}
 }

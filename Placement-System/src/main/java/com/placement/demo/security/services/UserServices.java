@@ -4,6 +4,8 @@ import com.placement.demo.security.entity.User;
 
 public interface UserServices {
 	
-	User findByuserName(String username);
+	User findByUsername(String username);
 
+	User getUserbyUserId(int user_id);
+	
 }

@@ -1,15 +1,17 @@
-package com.placement.demo.security.entity;
+package com.placement.demo.admin.entity;
+
+import com.placement.demo.security.entity.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JwtReponse {
-
+@Data
+public class ResponseAdmin {
+	
+	private Admin admin;
 	private User user;
-	private String jwttoken;
 
 }

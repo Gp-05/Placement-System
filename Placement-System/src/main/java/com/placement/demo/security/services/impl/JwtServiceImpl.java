@@ -13,18 +13,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.placement.demo.admin.services.Adminservices;
 import com.placement.demo.security.entity.JwtReponse;
 import com.placement.demo.security.entity.JwtRequest;
 import com.placement.demo.security.entity.User;
-import com.placement.demo.security.repository.UserRepository;
 import com.placement.demo.security.services.JwtService;
+import com.placement.demo.security.services.UserServices;
 import com.placement.demo.security.util.JwtUtil;
 
 @Service
 public class JwtServiceImpl implements JwtService {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserServices userServices;
 
 	@Autowired
 	private JwtUtil jwtUtil;
@@ -32,10 +33,13 @@ public class JwtServiceImpl implements JwtService {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
+	@Autowired
+	private Adminservices adminservices;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		User user = userRepository.findByuserName(username);
+		User user = userServices.findByUsername(username);
 
 		if (user != null) {
 			return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
@@ -58,7 +62,9 @@ public class JwtServiceImpl implements JwtService {
 
 		String newgeneratedToken = jwtUtil.generateToken(userDetails);
 
-		User user = userRepository.findByuserName(username);
+		User user = userServices.findByUsername(username);
+
+		System.out.println(user);
 
 		return new JwtReponse(user, newgeneratedToken);
 	}

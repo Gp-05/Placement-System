@@ -3,6 +3,7 @@ package com.placement.demo.security.services;
 import java.util.Set;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Service;
 
 import com.placement.demo.security.entity.User;
 import com.placement.demo.security.entity.JwtReponse;
