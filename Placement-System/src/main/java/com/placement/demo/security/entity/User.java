@@ -19,6 +19,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.placement.demo.admin.entity.Admin;
 import com.placement.demo.admin.entity.Role;
+import com.placement.demo.collage.enitity.Collage;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -53,5 +54,9 @@ public class User {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<Admin> admins = new ArrayList<Admin>();
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private List<Collage> collages=new ArrayList<Collage>();
+
 
 }

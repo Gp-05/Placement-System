@@ -2,8 +2,10 @@ package com.placement.demo.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +39,16 @@ public class AdminController {
 		} catch (Exception e) {
 			return ResponseEntity.ok("UserName already exists....!");
 		}
-
 	}
-
+	@GetMapping("/getAdmin/{user_id}")
+	@PreAuthorize("hasRole('Admin')")
+	public ResponseEntity<?> getAdmin(@PathVariable("user_id") int user_id){
+		try {
+			User user =userServices.getUserbyUserId(user_id);
+			return ResponseEntity.ok(user);
+		} catch (Exception e) {
+			return ResponseEntity.ok("Something wrong....!");
+		}
+	}
+	
 }

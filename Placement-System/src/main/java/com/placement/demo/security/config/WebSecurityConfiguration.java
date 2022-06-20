@@ -40,9 +40,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
 		http.csrf().disable().authorizeRequests()
-				.antMatchers("/signin", "/admin/createNewRole", "/admin/createAdmin").permitAll()
-				.antMatchers(HttpHeaders.ALLOW).permitAll().anyRequest().authenticated().and().exceptionHandling()
-				.authenticationEntryPoint(authenticationEntryPoint).and().sessionManagement()
+		        .antMatchers("/signin", "/admin/createNewRole", "/admin/createAdmin","/collage/createCollage")
+				.permitAll().antMatchers(HttpHeaders.ALLOW).permitAll().anyRequest().authenticated().and()
+				.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(jwtrequestfilter, UsernamePasswordAuthenticationFilter.class);
 	}

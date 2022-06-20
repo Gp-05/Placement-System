@@ -25,16 +25,16 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
 	@Autowired
 	private JwtUtil jwtutil;
-	
+
 	@Autowired
 	private JwtService jwtservice;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		
+
 		final String header = request.getHeader("Authorization");
- 
+
 		String jwttoken = null;
 		String username = null;
 		
@@ -51,11 +51,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		}
 		
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			
-			//admin
-			//collage
-			//offcer
-			//student
+
 			UserDetails userDetails = jwtservice.loadUserByUsername(username);
 
 			if (jwtutil.validateToken(jwttoken, userDetails)) {
@@ -70,7 +66,5 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		}
 
 		filterChain.doFilter(request, response);
-
-		
 	}
 }

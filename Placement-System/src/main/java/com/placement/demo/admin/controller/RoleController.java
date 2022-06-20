@@ -13,12 +13,12 @@ import com.placement.demo.admin.services.RoleServices;
 @RestController
 @RequestMapping("/admin")
 public class RoleController {
-	
+
 	@Autowired
 	private RoleServices roleServices;
-	
+
 	@PostMapping("/createNewRole")
-	public ResponseEntity<?> saveRole(@RequestBody Role role){
+	public ResponseEntity<?> saveRole(@RequestBody Role role) {
 		return ResponseEntity.ok(roleServices.saveRole(role));
 	}
 
