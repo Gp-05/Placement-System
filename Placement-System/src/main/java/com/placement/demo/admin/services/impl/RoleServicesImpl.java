@@ -9,7 +9,7 @@ import com.placement.demo.admin.services.RoleServices;
 
 @Service
 public class RoleServicesImpl implements RoleServices {
-	
+
 	@Autowired
 	private RoleRepository roleRepository;
 

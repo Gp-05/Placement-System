@@ -18,7 +18,7 @@ public class TestApiController {
 	public String forUser() {
 		return "this URL is Only accessible to Student";
 	}
-	
+
 	@GetMapping("/forCollage")
 	@PreAuthorize("hasRole('Collage')")
 	public String forCollage() {

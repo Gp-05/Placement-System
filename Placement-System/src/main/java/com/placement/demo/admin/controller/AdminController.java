@@ -30,7 +30,6 @@ public class AdminController {
 
 	@PostMapping("/createAdmin")
 	public ResponseEntity<?> saveAdmin(@RequestBody Admin admin) {
-
 		try {
 			Admin admin2 = adminservices.createAdmin(admin);
 			User user = userServices.getUserbyUserId(admin2.getUser().getUser_id());
@@ -40,15 +39,16 @@ public class AdminController {
 			return ResponseEntity.ok("UserName already exists....!");
 		}
 	}
+
 	@GetMapping("/getAdmin/{user_id}")
 	@PreAuthorize("hasRole('Admin')")
-	public ResponseEntity<?> getAdmin(@PathVariable("user_id") int user_id){
+	public ResponseEntity<?> getAdmin(@PathVariable("user_id") int user_id) {
 		try {
-			User user =userServices.getUserbyUserId(user_id);
+			User user = userServices.getUserbyUserId(user_id);
 			return ResponseEntity.ok(user);
 		} catch (Exception e) {
 			return ResponseEntity.ok("Something wrong....!");
 		}
 	}
-	
+
 }
