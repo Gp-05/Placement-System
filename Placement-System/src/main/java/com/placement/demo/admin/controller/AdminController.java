@@ -18,6 +18,9 @@ import com.placement.demo.admin.services.Adminservices;
 import com.placement.demo.security.entity.User;
 import com.placement.demo.security.services.UserServices;
 
+/*
+ */
+
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
